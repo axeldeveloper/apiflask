@@ -3,7 +3,7 @@ application = Flask(__name__)
 
 @application.route("/")
 def hello():
-    return "Axel OpenShift Hello World!"
+    return "Conectando Flask SQLAlchemy POSTGRESS!"
 
 if __name__ == "__main__":
     application.run()
