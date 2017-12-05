@@ -5,5 +5,11 @@ application = Flask(__name__)
 def hello():
     return "Conectando Flask SQLAlchemy POSTGRESS!"
 
+@application.route('/<name>')
+def hello_name(name):
+    return "Hello {}!".format(name)
+
+
+
 if __name__ == "__main__":
     application.run()
