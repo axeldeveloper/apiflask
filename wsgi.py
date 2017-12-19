@@ -12,11 +12,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 application = Flask(__name__)
-application.config['DEBUG'] = True
-application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
-application.secret_key = 'some_secret'
-#application.config.from_pyfile('alphonce.cfg')
-application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+#application.config['DEBUG'] = True
+#application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
+#application.secret_key = 'some_secret'
+application.config.from_pyfile('alphonce.cfg')
+#application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(application)
 
 import models
