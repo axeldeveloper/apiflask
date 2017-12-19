@@ -3,6 +3,8 @@
 #################
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import os
+
 #from models import Tipos
 
 
@@ -12,11 +14,17 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 application = Flask(__name__)
-#application.config['DEBUG'] = True
+application.config['DEBUG'] = True
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
-#application.secret_key = 'some_secret'
-application.config.from_pyfile('alphonce.cfg')
-#application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+application.secret_key = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
+
+#application.config.from_pyfile('alphonce.cfg')
+
+application.config['PROPAGATE_EXCEPTIONS'] = True
+application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
+application.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
 db = SQLAlchemy(application)
 
 import models

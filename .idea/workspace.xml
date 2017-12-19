@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0074c07-2053-4e68-8422-79602f346db3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/openshift.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alphonce.cfg" afterPath="$PROJECT_DIR$/alphonce.cfg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi.py" afterPath="$PROJECT_DIR$/wsgi.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,24 +18,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="18" column="60" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="60" />
+            <state relative-caret-position="-102">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
                 <element signature="e#54#103#0" expanded="true" />
-                <element signature="e#1037#1462#0" expanded="false" />
+                <element signature="e#1296#1721#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="alphonce.cfg" pinned="false" current-in-tab="true">
+      <file leaf-file-name="alphonce.cfg" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/alphonce.cfg">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="5" column="73" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -69,9 +68,9 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/openshift.txt" />
-        <option value="$PROJECT_DIR$/wsgi.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/alphonce.cfg" />
+        <option value="$PROJECT_DIR$/wsgi.py" />
       </list>
     </option>
   </component>
@@ -215,7 +214,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#54#103#0" expanded="true" />
-            <element signature="e#1037#1462#0" expanded="false" />
+            <element signature="e#1296#1721#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -258,7 +257,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#54#103#0" expanded="true" />
-            <element signature="e#1037#1462#0" expanded="false" />
+            <element signature="e#1296#1721#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -309,7 +308,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#54#103#0" expanded="true" />
-            <element signature="e#1037#1462#0" expanded="false" />
+            <element signature="e#1296#1721#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -343,7 +342,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#54#103#0" expanded="true" />
-            <element signature="e#1037#1462#0" expanded="false" />
+            <element signature="e#1296#1721#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -461,17 +460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="18" column="60" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="60" />
-          <folding>
-            <element signature="e#54#103#0" expanded="true" />
-            <element signature="e#1037#1462#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -482,9 +470,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alphonce.cfg">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="5" column="73" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="73" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#54#103#0" expanded="true" />
+            <element signature="e#1296#1721#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
