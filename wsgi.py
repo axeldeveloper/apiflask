@@ -1,9 +1,11 @@
 #################
 #### imports ####
 #################
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
+
+
 
 #from models import Tipos
 
@@ -40,6 +42,7 @@ def hello():
 
 
 # Save e-mail to database and send to success page
+
 @application.route('/prereg', methods=['POST'])
 def prereg():
     email = None
@@ -53,6 +56,16 @@ def prereg():
             return render_template('success.html')
     return render_template('index.html')
 
+
+
+@application.route('/new', methods=['GET', 'POST'])
+def new():
+    if request.method == 'POST':
+            todo = models.Tipos(request.form['email'])
+            db.session.add(todo)
+            db.session.commit()
+            return redirect(url_for('index'))
+    return render_template('new.html')
 
 @application.route('/<name>')
 def hello_name(name):
