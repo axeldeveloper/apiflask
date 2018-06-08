@@ -20,7 +20,10 @@ application = Flask(__name__)
 
 application.config['PROPAGATE_EXCEPTIONS'] = True
 #application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
-application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
+#application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
+application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
+#SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
+#SQLALCHEMY_ECHO = False
 application.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
@@ -73,6 +76,8 @@ def prereg():
         db.session.commit()
         return render_template('success.html') """
     return render_template('index.html')
+
+
 
 @application.route('/test/<name>')
 def hello_name(name):
