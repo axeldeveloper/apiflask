@@ -18,20 +18,20 @@ application = Flask(__name__)
 
 #application.config.from_pyfile('alphonce.cfg')
 
-application.config['PROPAGATE_EXCEPTIONS'] = True
+#application.config['PROPAGATE_EXCEPTIONS'] = True
 #application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
-application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
+#application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
 #SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
 #SQLALCHEMY_ECHO = False
-application.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+#application.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+#application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-application.config['DEBUG'] = True
+#application.config['DEBUG'] = True
 
-application.secret_key = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
+#application.secret_key = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
 
-db = SQLAlchemy(application)
+#db = SQLAlchemy(application)
 
 import models
 
@@ -40,8 +40,12 @@ def hello():
     return render_template('index.html', title="Welcome")
 
 
+@application.route("/tarefa")
+def hello():
+    return render_template('tarefa.html', title="Welcome")
 
 
+"""
 @application.route("/tipos")
 def tipos():
     #return "Conectando Flask SQLAlchemy POSTGRESS!"
@@ -59,24 +63,24 @@ def new():
             db.session.commit()
             return redirect(url_for('index'))
     return render_template('new.html')
-
+"""
 
 
 # Save e-mail to database and send to success page
-
+"""
 @application.route('/prereg', methods=['POST'])
 def prereg():
     email = None
-    """ if request.method == 'POST':
+    if request.method == 'POST':
     email = request.form['email']
     # Check that email does not already exist (not a great query, but works)
     if not db.session.query(User).filter(User.email == email).count():
         reg = User(email)
         db.session.add(reg)
         db.session.commit()
-        return render_template('success.html') """
+        return render_template('success.html') 
     return render_template('index.html')
-
+"""
 
 
 @application.route('/test/<name>')
