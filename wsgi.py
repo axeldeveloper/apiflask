@@ -31,7 +31,7 @@ application = Flask(__name__)
 
 #application.secret_key = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
 
-#db = SQLAlchemy(application)
+db = SQLAlchemy(application)
 
 import models
 
