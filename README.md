@@ -1,16 +1,9 @@
-# Projeto para controle de Tarefas
+# Project to control Tasks
 
-micro serviço em python com Flask
----------------------------------
+Micro service in python with flask
+----------------------------------
 
-Pushing to a remote
-Use git push to push commits made on your local branch to a remote repository.
+--CRUD
 
-The git push command takes two arguments:
-
-A remote name, for example, origin
-A branch name, for example, master
-For example:
-
-git push  <REMOTENAME> <BRANCHNAME>
+CRUD (Create, Read, Update and Delete in English) for the four basic operations used in relational databases (RDBMS) or user interface for creating, querying, updating and destroying data.
 
