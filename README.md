@@ -1,6 +1,7 @@
 # Projeto para controle de Tarefas
 
-Python com Flask
+micro serviço em python com Flask
+---------------------------------
 
 Pushing to a remote
 Use git push to push commits made on your local branch to a remote repository.
