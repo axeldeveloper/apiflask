@@ -16,7 +16,7 @@ import os
 application = Flask(__name__)
 
 
-#application.config.from_pyfile('alphonce.cfg')
+application.config.from_pyfile('alphonce.cfg')
 
 #application.config['PROPAGATE_EXCEPTIONS'] = True
 #application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
@@ -41,8 +41,12 @@ def hello():
 
 
 @application.route("/tarefa")
-def hello():
+def tarefa():
     return render_template('tarefa.html', title="Welcome")
+
+@application.route('/test/<name>')
+def hello_name(name):
+    return "Hello {}!".format(name)
 
 
 """
@@ -81,13 +85,6 @@ def prereg():
         return render_template('success.html') 
     return render_template('index.html')
 """
-
-
-@application.route('/test/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
-
-
 
 
 
