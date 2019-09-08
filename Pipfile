@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
 astroid = "==1.5.3"
@@ -26,6 +27,8 @@ MarkupSafe = "==1.0"
 SQLAlchemy = "==1.1.15"
 Werkzeug = "==0.12.2"
 psycopg2-binary = "==2.8.3"
+flask-migrate = "*"
+flask-script = "*"
 
 [requires]
 python_version = "3.5"

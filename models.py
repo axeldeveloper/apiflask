@@ -1,17 +1,15 @@
 from wsgi import db
 
-####################
-#### MODELOS ####
-####################
 
 class Tipos(db.Model):
     __tablename__ = 'Tipos'
-
-    Id = db.Column(db.Integer, primary_key=True)
-    Descricao = db.Column(db.String())
+    
+    id = db.Column(db.Integer, primary_key=True)
+    
+    descricao = db.Column(db.String())
 
     def __init__(self, Descricao):
-        self.url = Descricao
+        self.url = descricao
 
 
     def __repr__(self):

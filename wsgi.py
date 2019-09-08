@@ -1,64 +1,65 @@
-#################
-#### imports ####
-#################
-from flask import Flask, render_template, request, flash, url_for, redirect
+
+from flask import Flask, request, render_template, redirect, url_for , flash
+
 from flask_sqlalchemy import SQLAlchemy
+
+
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
+from flask import json
+from flask import jsonify 
 import os
+
+from config import CONECTION_STRING
 
 #from models import Tipos
 
+app = Flask(__name__)
 
-################
-#### config ####
-################
+app.config['SQLALCHEMY_DATABASE_URI'] = CONECTION_STRING
 
+# application.config.from_pyfile('alphonce.cfg')
+# application.config['PROPAGATE_EXCEPTIONS'] = True
+# application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
+# application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
+# application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
+# SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
+ # SQLALCHEMY_ECHO = False
 
-application = Flask(__name__)
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-
-application.config.from_pyfile('alphonce.cfg')
-
-#application.config['PROPAGATE_EXCEPTIONS'] = True
-#application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
-#application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
-#application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
-#SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
-#SQLALCHEMY_ECHO = False
-#application.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-#application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
-#application.config['DEBUG'] = True
+app.config['DEBUG'] = True
 
 #application.secret_key = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
 
-db = SQLAlchemy(application)
 
-import models
 
-@application.route("/")
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
+
+from models import Tipos
+
+@app.route("/")
 def hello():
     return render_template('index.html', title="Welcome")
 
+@app.route("/api/tipos")
+def tipos_api():
+    users = Tipos.query.all()
+    return jsonify([user.descricao for user in users])
 
-@application.route("/tarefa")
-def tarefa():
-    return render_template('tarefa.html', title="Welcome")
-
-@application.route('/test/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
-
-
-"""
-@application.route("/tipos")
+@app.route("/tipos")
 def tipos():
-    #return "Conectando Flask SQLAlchemy POSTGRESS!"
-    registros = models.Tipos.query.filter(
-        models.Tipos.Id > 0)\
-        .order_by(models.Tipos.Descricao.desc()).limit(4)
+    registros = Tipos.query.filter(Tipos.id > 0) \
+        .order_by(Tipos.descricao.desc()).limit(4)
     return render_template('tipos.html', rows=registros , title="Tipos")
-    #return render_template('index.html')
-
+ 
+  
+"""
 @application.route('/tipos/add', methods=['GET', 'POST'])
 def new():
     if request.method == 'POST':

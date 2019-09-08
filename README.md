@@ -7,7 +7,7 @@
 CRUD (Create, Read, Update and Delete in English) for the four basic operations used in relational databases (RDBMS) or user interface for creating, querying, updating and destroying data.
 
 
-# http://www.islandtechph.com/2017/10/23/how-to-deploy-a-flask-python-3-5-application-on-a-live-ubuntu-16-04-linux-server-running-apache2/
+### http://www.islandtechph.com/2017/10/23/how-to-deploy-a-flask-python-3-5-application-on-a-live-ubuntu-16-04-linux-server-running-apache2/
 
 # Python and pipenv
 - pipenv shell
@@ -33,6 +33,46 @@ First, you need to specify where the Flask application is defined (via the FLASK
 (venv) $ flask run
 * Serving Flask app "app"
 * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+* alternative  
+
+    * $ python -m flask run
+    * $ flask run --host=0.0.0.0
+
+# Debug Mode
+    * $ export FLASK_ENV=development
+    * $ flask run
+    * $ export FLASK_DEBUG=1.
+
+# Migrations 
+### install packages Flask-Migrate
+    - pip install Flask-Migrate
+    - or pipenv install Flask-Migrate
+
+    * $ flask db init
+    * $ flask db migrate 
+    * $ flask db upgrade
+    * $ flask db --help
+
+## Using Flask-Script
+>
+    db = SQLAlchemy(app)
+    migrate = Migrate(app, db)
+
+    manager = Manager(app)
+    manager.add_command('db', MigrateCommand)
+
+    class User(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        name = db.Column(db.String(128))
+
+    if __name__ == '__main__':
+        manager.run()
+
+
+    $ python manage.py db init
+    $ python manage.py db migrate
+    $ python manage.py db upgrade
+    $ python manage.py db --help
 
 
 # Docker

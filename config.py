@@ -8,11 +8,15 @@ secure_scheme_headers = { 'X-Forwarded-Proto': 'https' }
 
 POSTGRES = {
     'user': 'postgres',
-    'pw': 'password',
-    'db': 'my_database',
+    'pw': '766312',
+    'db': 'tarefa_api',
     'host': 'localhost',
-    'port': '5432',
+    'port': '15432',
 }
+
+CONECTION_STRING = 'postgresql://%(user)s:\
+%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+
 """ 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
