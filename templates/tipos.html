@@ -2,67 +2,68 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block body %}
-    <div class="container">
+    <div class="p-lg-9 my-0">
 
-        <div class="row">
+        <div class="page-header">
+            <h1>Lista de Clientes</h1>
+        </div>
 
-            <div class="col-md-12">
-                <br>
-                <br>
-                <h1> Bem Vindo </h1>
-                <p class="lead">
-                    Controle de Tarefas
-                </p>
 
-                <br>
+        <div class="row"> 
 
-                <div class="table-responsive">
-
-                        {% for item in rows %}
-                        <div class="well">
-                          <h2>
-                            <a href="">{{item['descricao'] }}</a>
-                            <small>$ {{ item['descricao'] }}</small>
-                          </h2>
-                        </div>
-                      {% endfor %}
-
+            <div class="col-md-12 m-1" >
+                <div class="input-group ">
+                    <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Itens">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                </div>
+            </div> 
+            <div class="col-md-12" >
+                <a href="add.html" class="btn btn-primary pull-left h2">
+                    <i class="fa fa-plus"></i>               
+                </a>
+            </div>   
+              
+            <div class="col-md-12" >
+                <div class="table-responsive-xl">
                     <table class="table table-hover">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
                                 <th>Descrição</th>
-                                <th>Progress</th>
+                                <th>Opções</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for item in rows %}
                             <tr>
                                 <td>{{item['id'] }}</td>
-                                <td> {{item['descricao'] }} </td>                              
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
-                                    </div>
+                                <td style="width: 70%;"> {{item['descricao'] }} </td>                                                          
+                                <td class="actions">
+                                    <a class="btn btn-primary btn-xs" href="view.html">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                    <a class="btn btn-primary btn-xs" href="edit.html">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-xs"  href="#" >
+                                        <i class="fa fa-trash"></i>                                
+                                    </a>
                                 </td>
                             </tr>
-                            {% endfor %}
-                            
+                            {% endfor %}                         
                         </tbody>
                     </table>
                 </div>
-
-
+                <a href="{{ url_for('tipos_api') }}">
+                    <input type="button" class="btn btn-primary" value="Voltar"></a>
             </div>
 
         </div>
         <!-- /row -->
-
-
-
     </div>
     <!-- /container full -->
-
-
-
 {% endblock %}

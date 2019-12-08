@@ -1,15 +1,23 @@
-html,body {
-  height:100%;
+.container {
+  /* max-width: 960px; */
 }
+/*
+*
+* Custom translucent site header
+*/
 
-h1 {
-  font-family: Arial,sans-serif
-  font-size:80px;
-  color:#DDCCEE;
+.site-header {
+ background-color: rgba(0, 0, 0, .85);
+ -webkit-backdrop-filter: saturate(180%) blur(20px);
+ backdrop-filter: saturate(180%) blur(20px);
 }
-
-.lead {
-	color:#DDCCEE;
+.site-header a {
+ color: #999;
+ transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+ color: #fff;
+ text-decoration: none;
 }
 
 
@@ -30,5 +38,9 @@ h1 {
 
 .v-center {
   margin-top:7%;
+}
+
+.border-v{
+  border: 1px solid #c00;
 }
   

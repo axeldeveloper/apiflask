@@ -1,11 +1,12 @@
 # Micro service in python with flask
 
-## Axel 
+
 
 >CRUD
 
 CRUD (Create, Read, Update and Delete in English) for the four basic operations used in relational databases (RDBMS) or user interface for creating, querying, updating and destroying data.
 
+## mais informações de instalação 
 
 ### http://www.islandtechph.com/2017/10/23/how-to-deploy-a-flask-python-3-5-application-on-a-live-ubuntu-16-04-linux-server-running-apache2/
 
@@ -89,6 +90,7 @@ docker-compose -f "docker/docker-compose.yml" up -d --build
 - [x] html
 - [x] Jinja
 
+**Disclaimers:**
 
 $ git add .
 $ git commit -am "make it better"
