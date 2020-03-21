@@ -34,7 +34,6 @@ app.config['DEBUG'] = True
 #application.secret_key = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
 
 
-
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
