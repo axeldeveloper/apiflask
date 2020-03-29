@@ -87,9 +87,10 @@ First, you need to specify where the Flask application is defined
 (via the FLASK_APP environment variable). 
 Then, you can run your Flask application with `flask run`:
 
-- (venv) $ export FLASK_APP=wsgi.py
+
 - (venv) $ export FLASK_ENV=development
 - (venv) $ export FLASK_DEBUG=1
+- (venv) $ export FLASK_APP=app.py
 - (venv) $ flask run
 
 * Serving Flask app "app"
@@ -101,8 +102,8 @@ Then, you can run your Flask application with `flask run`:
 
 # Debug Mode
     * $ export FLASK_ENV=development
-    * $ flask run
     * $ export FLASK_DEBUG=1.
+    * $ flask run
 
 
 # install packages Flask-Migrate
