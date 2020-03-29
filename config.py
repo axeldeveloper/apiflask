@@ -17,10 +17,9 @@ POSTGRES = {
 CONECTION_STRING = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
-""" 
+"""
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
-
 """
 
 SQLALCHEMY_DATABASE_URI    = 'sqlite:////tmp/test.db'
