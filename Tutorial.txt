@@ -8,6 +8,21 @@
     /root/.local/share/virtualenvs/apiflask-blOf2lWf
 
 
+# Window WSL
+
+sudo mkdir /mnt/g
+sudo mount -t drvfs G: /mnt/g
+sudo umount /mnt/g/
+root@DESKTOP-2RLEVCB:~/Dev/apiflask$  python3 -m pipenv shell
+
+? Successfully created virtual environment! 
+Virtualenv location: /home/axel/.local/share/virtualenvs/apiflask-fC62-enn
+Launching subshell in virtual environment…
+ . /home/axel/.local/share/virtualenvs/apiflask-fC62-enn/bin/activate
+axel@DESKTOP-2RLEVCB:~/Dev/apiflask$  . /home/axel/.local/share/virtualenvs/apiflask-fC62-enn/bin/activate
+(apiflask) axel@DESKTOP-2RLEVCB:~/Dev/apiflask$ 
+
+
 [[source]]
 name = "pypi"
 url = "https://pypi.org/simple"
@@ -70,3 +85,131 @@ SQLAlchemy==1.1.15
 virtualenv==15.1.0
 Werkzeug==0.12.2
 wrapt==1.10.11
+
+
+sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xix-deployment-on-docker-containers
+
+
+(1) all() 以列表形式返回所有对象
+类名.query.all()
+
+@view.route('/filter/')
+def filter():
+    data = User.query.all()
+    print(data)
+    return render_template('show.html',data=data)
+1
+2
+3
+4
+(2) filter() 过滤查询默认所有
+运算符的值
+
+>
+<
+>=
+<=
+==
+!=
+类名.query.filter([条件])
+
+data = User.query.filter(User.sex==True,User.age<20) #查询性别为True and 年龄小于20
+data = User.query.filter()#查询所有
+1
+(3) filter_by() 只支持单条件查询 默认查询所有
+类名.query.filter_by(**kwargs)
+
+data = User.query.filter_by()
+data = User.query.filter_by(sex=True)
+data = User.query.filter_by(sex=True,age=18)
+1
+2
+(4) offset(num) 偏移值的num条
+data = User.query.offset(5)
+1
+(5) limit(num) 取出num条数据
+data = User.query.limit(5)
+1
+(6) offset limit
+data = User.query.offset(5).limit(5)
+(7) order_by 排序
+排序
+
+默认升序
+-降序
+实例
+
+data = User.query.order_by(User.age)
+data = User.query.order_by(-User.age)
+1
+(8) first() 取出第一个对象
+data = User.query.order_by(-User.age).first()
+data = User.query.first()
+1
+2
+(9) get(id值) 根据id查询数据返回对象 不存在 返回None
+data = User.query.get(1)
+(10) contains() 包含关系（模糊查询）
+data = User.query.filter(User.username.contains('张'))
+(11) like 模糊查询
+data = User.query.filter(User.username.like('%张%'))
+data = User.query.filter(User.username.like('张%'))
+data = User.query.filter(User.username.like('%张'))
+data = User.query.filter(User.username.like('%超'))
+1
+2
+3
+(12) startswith endswith 以…开头 以…结尾
+data = User.query.filter(User.username.startswith('王'))
+data = User.query.filter(User.username.endswith('文'))
+1
+(13) 比较运算符
+__gt__
+__ge__
+__lt__
+__le__
+data = User.query.filter(User.age.__gt__(30))
+(14) in 和 not … in …
+data = User.query.filter(User.age.in_([10,20,30,40,18,91]))
+data = User.query.filter(User.age.notin_([10,20,30,40,18,91]))
+1
+(15) null 和 not null
+data = User.query.filter(User.username.is_(None))
+data = User.query.filter(User.username==None)
+data = User.query.filter(User.username!=None)
+data = User.query.filter(User.username.isnot(None))
+1
+2
+3
+(16) and_
+导入：
+
+from sqlalchemy import and_
+
+data = User.query.filter(and_(User.sex==True,User.age==18))
+data = User.query.filter(User.sex==True,User.age==18)
+data = User.query.filter(User.sex==True).filter(User.age==18)
+1
+2
+(17) or_
+导入：
+
+from sqlalchemy import or_
+
+data = User.query.filter(or_(User.sex==True,User.age==18))
+(18) not_
+导入：
+
+from sqlalchemy import not_
+
+data = User.query.filter(not_(User.sex == True))
+(19) count 统计
+data = User.query.filter().count()
+(20) concat 连接
+data = User.query.order_by(-Posts.path.concat(Posts.id))
+七、迁移
+————————————————
+版权声明：本文为CSDN博主「jokerBi」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_42806416/java/article/details/83794786
