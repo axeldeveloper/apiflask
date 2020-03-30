@@ -121,7 +121,8 @@ Then, you can run your Flask application with `flask run`:
 
 
 ## Using Flask-Script
->
+```python
+    
     db = SQLAlchemy(app)
     migrate = Migrate(app, db)
 
@@ -135,30 +136,134 @@ Then, you can run your Flask application with `flask run`:
     if __name__ == '__main__':
         manager.run()
 
+```
 
-    $ python manage.py db init
-    $ python manage.py db migrate
-    $ python manage.py db upgrade
-    $ python manage.py db --help
+# query functions
+```python
+    # (1) all() 
+    data = User.query.all()
+    print(data)
+
+
+    #(2) filter() 
+    >
+    <
+    >=
+    <=
+    ==
+    !=
+    data = User.query.filter(User.sex==True,User.age<20) 
+    data = User.query.filter()
+
+
+    # (3) filter_by() 
+    data = User.query.filter_by()
+    data = User.query.filter_by(sex=True)
+    data = User.query.filter_by(sex=True,age=18)
+
+    # (4) offset(num) 
+    data = User.query.offset(5)
+
+    # (5) limit(num) 
+    data = User.query.limit(5)
+
+    # (6) offset limit
+    data = User.query.offset(5).limit(5)
+
+    # (7) order_by
+    data = User.query.order_by(User.age)
+    data = User.query.order_by(-User.age)
+
+
+    # (8) first() 
+    data = User.query.order_by(-User.age).first()
+    data = User.query.first()
+
+
+    # (9) get(id)
+    data = User.query.get(1)
+
+    # (10) contains() 
+    data = User.query.filter(User.username.contains('张'))
+
+    # (11) like
+    data = User.query.filter(User.username.like('%hello%'))
+    data = User.query.filter(User.username.like('hello%'))
+    data = User.query.filter(User.username.like('%hello'))
+
+
+    # (12) startswith endswith 
+    data = User.query.filter(User.username.startswith('hello'))
+    data = User.query.filter(User.username.endswith('world'))
+
+
+    # (13) 
+    __gt__
+    __ge__
+    __lt__
+    __le__
+    data = User.query.filter(User.age.__gt__(30))
+
+    # (14) in and not … in …
+    data = User.query.filter(User.age.in_([10,20,30,40,18,91]))
+    data = User.query.filter(User.age.notin_([10,20,30,40,18,91]))
+
+
+    # (15) null and not null
+    data = User.query.filter(User.username.is_(None))
+    data = User.query.filter(User.username==None)
+    data = User.query.filter(User.username!=None)
+    data = User.query.filter(User.username.isnot(None))
+
+
+    # (16) and_
+    from sqlalchemy import and_
+    data = User.query.filter(and_(User.sex==True,User.age==18))
+    data = User.query.filter(User.sex==True,User.age==18)
+    data = User.query.filter(User.sex==True).filter(User.age==18)
+
+
+    # (17) or_
+    from sqlalchemy import or_
+    data = User.query.filter(or_(User.sex==True,User.age==18))
+
+
+    # (18) not_
+    from sqlalchemy import not_
+    data = User.query.filter(not_(User.sex == True))
+
+    # (19) count 
+    data = User.query.filter().count()
+
+    # (20) concat 
+    data = User.query.order_by(-Posts.path.concat(Posts.id))
+```
+
+
+# manage congigure and use
+- $ python manage.py db init
+- $ python manage.py db migrate
+- $ python manage.py db upgrade
+- $ python manage.py db --help
 
 
 # Docker
 - sudo usermod -aG docker $USER
 - export DOCKER_HOST="tcp://0.0.0.0:2375"
+- export DOCKER_HOST=127.0.0.1:4243 >> ~/.bashrc
+- export DOCKER_HOST=tcp://192.168.99.100:2376  // your Docker IP
+- export DOCKER_CERT_PATH=/mnt/c/Users/YOUR_USERNAME/.docker/machine/certs
+- export DOCKER_TLS_VERIFY=1
+- sudo /etc/init.d/docker start
 - sudo service docker start or systemctl start docker.
 - sudo service docker stop
 
-export DOCKER_HOST=127.0.0.1:4243 >> ~/.bashrc
+
+# doccker compose
+- docker-compose -f "docker/docker-compose.yml" up -d --build
+- /usr/bin/docker-compose -f "docker/docker-compose.yml" up -d --build
 
 
-docker-compose -f "docker/docker-compose.yml" up -d --build
-
-/usr/bin/docker-compose -f "docker/docker-compose.yml" up -d --build
-
-export DOCKER_HOST=tcp://192.168.99.100:2376  // your Docker IP
-export DOCKER_CERT_PATH=/mnt/c/Users/YOUR_USERNAME/.docker/machine/certs
-export DOCKER_TLS_VERIFY=1
-sudo /etc/init.d/docker start
 ### project using
 
 - [x] python 3.4.4  upgrade pipenv and python 3.5.3
@@ -174,6 +279,7 @@ sudo /etc/init.d/docker start
     * $ git add .
     * $ git commit -am "make it better"
     * $ git push origin master
+    * $git rm -r --cached . `resolve problem cache`
 
 
 # Existing Git repository

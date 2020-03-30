@@ -14,14 +14,10 @@ POSTGRES = {
     'port': '15432',
 }
 
-CONECTION_STRING = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+CONECTION_STRING = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
-"""
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
-"""
 
+#SQLALCHEMY_DATABASE_URI = 'postgresql://%(user)s:\%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 SQLALCHEMY_DATABASE_URI    = 'sqlite:////tmp/test.db'
 SQLALCHEMY_DATABASE_SQLITE = 'sqlite:////tmp/test.db'
 SQLALCHEMY_DATABASE_PG     ='postgresql://localhost/flask'
@@ -32,7 +28,7 @@ DEBUG = True
 PROPAGATE_EXCEPTIONS = True
 
 
-# application.config.from_pyfile('alphonce.cfg')
+# application.config.from_pyfile('flask.cfg')
 # application.config['PROPAGATE_EXCEPTIONS'] = True
 # application.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
 # application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:766312@localhost/flask'
