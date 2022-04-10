@@ -88,7 +88,6 @@ Then, you can run your Flask application with `flask run`:
         * $ python -m flask run
         * $ flask run --host=0.0.0.0
 
-
 # Debug Mode
     * $ export FLASK_ENV=development
     * $ export FLASK_DEBUG=1.
@@ -287,13 +286,7 @@ Then, you can run your Flask application with `flask run`:
     * $ git config --global user.name "ark"
 
 
-
-
-
-
-################################################
-#################### db     ####################
-################################################
+```python
 
 @api.route('/create_table/')
 def create_table():
@@ -401,6 +394,4 @@ def estado_lista():
         MESSAGE = f"Ops :) {error}"
         RESULT = False
         return jsonify({ 'success': RESULT, 'rows': None, 'message': MESSAGE }) 
-
-
-   
+```
