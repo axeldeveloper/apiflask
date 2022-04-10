@@ -10,12 +10,11 @@ pylint = "*"
 flask = "*"
 flask-sqlalchemy = "*"
 sqlalchemy = "*"
-flask-migrate = "*"
-flask-script = "*"
 psycopg2 = "*"
+marshmallow-sqlalchemy = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.9"
 
 [pipenv]
 allow_prereleases = true

@@ -6,13 +6,17 @@ threads = int(os.environ.get('GUNICORN_THREADS', '1'))
 forwarded_allow_ips = '*'
 secure_scheme_headers = { 'X-Forwarded-Proto': 'https' }
 
+
 POSTGRES = {
     'user': 'postgres',
-    'pw': '766312',
+    'pw': 'postgres',
     'db': 'tarefa_api',
     'host': 'localhost',
     'port': '15432',
 }
+
+
+#DATABASE_CONNECTION_URI = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
 
 CONECTION_STRING = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
@@ -40,6 +44,6 @@ LANGUAGES = {
    'pt': {'flag':'pt', 'name':'Portuguese'}
 }
 
-RESULT = None
+RESULT = ""
 
-MESSAGE == ''
+MESSAGE = 'Created'

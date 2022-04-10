@@ -1,41 +1,36 @@
 # Web app in python with flask
-
-```
-Give examples
-```
-- python
-- postgres
-- Microservice
-- flask
+    
+    - python
+    - postgres
+    - Microservice
+    - flask 
 
 
-> CRUD
+# CRUD
 
     CRUD (Create, Read, Update and Delete in English) for the four basic 
     operations used in relational databases (RDBMS) or 
     user interface for creating, querying, updating and destroying data.
-
-## mais informações de instalação do python 3.5
-
-* [aqui](http://www.islandtechph.com/2017/10/23/how-to-deploy-a-flask-python-3-5-application-on-a-live-ubuntu-16-04-linux-server-running-apache2/) - install python
-
-
-## PIP3
-- sudo apt-get install python3-pip  `install`
-- upgrade -> pip3 install --upgrade pip `upgrade`
-
+# Crete virtual env
+    $ python3.9 -m venv env
+    $ source env/bin/activate
+    (env)$ pip install flask==1.1.2
+# PIP3
+    - sudo apt-get install python3-pip  `install`
+    - upgrade -> pip3 install --upgrade pip `upgrade`
 
 
 # Python and pipenv 
-- pip3 install pipenv
-- pipenv shell  `execute to path project`
+    - pip3 install pipenv
+    - pipenv shell  `execute to path project`
+
+example out 
 ? Successfully created virtual environment! 
 - Virtualenv location: /root/.local/share/virtualenvs/apiflask-qjIn9wD9
 - . /root/.local/share/virtualenvs/apiflask-qjIn9wD9/bin/activate
+-  . /Users/axel/.local/share/virtualenvs/apiflask-asEOaeOO/bin/activat
 
-
-
-## pipenv set python 
+# pipenv set python 
     - pipenv install --python 'c:\python'  <-- `Window`
     - pipenv install --python 'usr/local/bin/python3.x' <-- `linux`
     - pipenv install --python ~/usr/local/bin/python3.7
@@ -43,42 +38,34 @@ Give examples
 
 
 # Windows - WSL 
-- sudo apt update
-- sudo apt install python3
-- sudo apt install python3-pip
-- sudo apt install python3-pip
-- pip3 list
-- pip3 install pipenv
-- pipenv install
+    - sudo apt update
+    - sudo apt install python3
+    - sudo apt install python3-pip
+    - sudo apt install python3-pip
+    - pip3 list
+    - pip3 install pipenv
+    - pipenv install
+
 
 
 # Dependencies 
-> $ pip install pipenv
-> $ sudo apt install libpq-dev python3-dev
-> $ pip3 install psycopg2-binary
+    > $ pip install pipenv
+    > $ sudo apt install libpq-dev python3-dev
+    > $ pip3 install psycopg2-binary
 
 
 # Python initialize pipenv
-- pipenv shell
+    - pipenv shell
 
 
 ## example output
 ✔ Successfully created virtual environment! 
 - Virtualenv location: /root/.local/share/virtualenvs/apiflask-qjIn9wD9
-- . /root/.local/share/virtualenvs/apiflask-qjIn9wD9/bin/activate  `<-  notebocke`
-- . /root/.local/share/virtualenvs/apiflask-blOf2lWf/bin/activate  `<-  desktop`
-- . /home/axel/.local/share/virtualenvs/apiflask-fC62-enn/bin/activate `<-   WSL Windows desktop`
-
+- . /root/.local/share/virtualenvs/apiflask-qjIn9wD9/bin/activate  `<-  env`
 
 # Install packages
     * $ pipenv install or
     * $ pipenv install -r requirements.txt
-
-
-# Flask  migrations
-    * $ flask db init
-    * $ flask db migrate
-    * $ flask db upgrade
 
 
 # Running the Development Server
@@ -87,24 +74,25 @@ First, you need to specify where the Flask application is defined
 (via the FLASK_APP environment variable). 
 Then, you can run your Flask application with `flask run`:
 
+    - (venv) $ export FLASK_ENV=development
+    - (venv) $ export FLASK_DEBUG=1
+    - (venv) $ export FLASK_APP=app.py
+    - (venv) $ flask run
 
-- (venv) $ export FLASK_ENV=development
-- (venv) $ export FLASK_DEBUG=1
-- (venv) $ export FLASK_APP=app.py
-- (venv) $ flask run
+## output 
 
-* Serving Flask app "app"
-* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-* alternative  
+    * Serving Flask app "app"
+    * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+    * alternative  
 
-    * $ python -m flask run
-    * $ flask run --host=0.0.0.0
+        * $ python -m flask run
+        * $ flask run --host=0.0.0.0
+
 
 # Debug Mode
     * $ export FLASK_ENV=development
     * $ export FLASK_DEBUG=1.
     * $ flask run
-
 
 # install packages Flask-Migrate
     * $ pip install Flask-Migrate or 
@@ -118,6 +106,14 @@ Then, you can run your Flask application with `flask run`:
     * $ flask db current --verbose
     * $ flask db history
     * $ flask db --help
+
+
+
+# Flask  migrations
+    * $ flask db init
+    * $ flask db migrate
+    * $ flask db upgrade
+
 
 
 ## Using Flask-Script
@@ -289,3 +285,122 @@ Then, you can run your Flask application with `flask run`:
 # Git config
     * $ git config --global user.email "email@example.com"
     * $ git config --global user.name "ark"
+
+
+
+
+
+
+################################################
+#################### db     ####################
+################################################
+
+@api.route('/create_table/')
+def create_table():
+    db.create_all()
+    return 'create_table'
+    
+@api.route('/drop_table/')
+def drop_table():
+    db.drop_all()
+    return 'drop_table'
+
+
+@manager.command
+def createdb():
+    db.create_all()
+    return 'create_table'
+
+@manager.command
+def dropdb():
+    db.drop_all()
+    return 'drop_table'
+
+
+ 
+
+################################################
+#################### view site #################
+################################################
+
+@app.route("/")
+def hello():
+    return render_template('index.html', title="Welcome")
+
+@app.route("/tipos")
+def tipos():
+    registros = Tipos.query.filter(Tipos.id > 0) \
+        .order_by(Tipos.descricao.desc()).limit(4)
+    return render_template('tipos.html', rows=registros , title="Tipos")
+ 
+
+
+
+################################################
+#################### api rest  #################
+################################################
+@app.route("/api/tipos")
+def tipos_api():
+    users = Tipos.query.all()
+    return jsonify([user.descricao for user in users])
+
+@app.route('/api/tipos/add', methods=['POST'])
+def new(): 
+    content = request.json 
+    try:
+        if request.method == 'POST':
+            descricao = content['descricao']
+            todo = Tipos(descricao)
+            db.session.add(todo)
+            db.session.commit()
+            MESSAGE = f"Tipos {descricao} successfully updated"
+            RESULT = True
+    except Exception as error:
+        MESSAGE = f"Ops :) {error}"
+        RESULT  = False
+    return jsonify({ 'success': RESULT , 'message': MESSAGE })
+
+
+@app.route('/api/estados/add', methods=['POST'])
+def estado_create():
+    content = request.json
+    try:
+        if request.method == 'POST':
+            sigla = content['Sigla']
+            nome = content['Nome']
+            # Check that email does not already exist (not a great query, but works)
+            #if not db.session.query(Estados).filter(nome == nome).count():
+            reg = Estados(sigla, nome)
+            db.session.add(reg)
+            db.session.commit()
+            MESSAGE = f"Estados {nome} successfully updated"
+            RESULT = True
+    except Exception as error:
+        print(error)
+        #raise  
+        MESSAGE = f"Ops :) {error}"
+        RESULT = False
+    
+    return jsonify({'success': RESULT , 'message': MESSAGE }) 
+
+@app.route("/api/estados")
+def estado_lista():
+    try:
+        #User.query.filter_by(username=username).first_or_404(description='There is no data with {}'.format(username))
+        users = Estados.query.all()
+        RESULT = True
+        MESSAGE = ""
+        return jsonify({
+            'success': RESULT,
+            'rows': users,
+            'message': MESSAGE 
+        }) 
+        
+        #return jsonify([user.descricao for user in users])
+    except Exception as error:
+        MESSAGE = f"Ops :) {error}"
+        RESULT = False
+        return jsonify({ 'success': RESULT, 'rows': None, 'message': MESSAGE }) 
+
+
+   
