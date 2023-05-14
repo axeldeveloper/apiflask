@@ -2,55 +2,56 @@ version: '3.8'
 
 services:
   api:
-    #build: ./services/web
-    build: .
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
     container_name: flask_api
-    command: python main.py
+    # command: python main.py
+    # command: uvicorn app.main:app --host 0.0.0.0  //uvicorn==0.15.0
+    #command: python main.py run --host 0.0.0.0
+    command: gunicorn --bind 0.0.0.0:5000 main:app
     # command: python main.py run -h 0.0.0.0
     # command: gunicorn -w 2 -t 3600 -b :5000 api:api --reload
-    # stdin_open: true
-    # tty: true
+    stdin_open: true
+    tty: true
     environment:
       STAGE: test
-      #SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://postgres:postgres@db:15432/tarefa_api
-      DATABASE_URL: postgresql://postgres:postgres@localhost:15432/tarefa_api
+      SQLALCHEMY_DATABASE_URI: postgresql://anonimous:anonimous@flask_api_db:5432/tarefa_api
+      # DATABASE_URL: postgresql://postgres:postgres@localhost:5432/tarefa_api
     volumes:
       #- ./services/web/:/usr/src/app/
-      - .:/reports
-      # - ./app:/usr/src/app/app
+      #- .:/reports
+      #- ./app:/usr/src/app/app
+      - .:/usr/src/app/
+      #- flask_api_data:/usr/src/app/app
     ports:
       - 5000:5000
-    #env_file:
-    #  - ./.env.dev
+    depends_on:
+      - postgres
+    env_file:
+      -  docker/python/.env
+    networks:
+      - flask_net
 
+  postgres:
+    container_name: flask_api_db
+    image: postgres:9.6.8
+    volumes:
+      - flask_db_data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    env_file:
+      - docker/postgres/.env
+    networks:
+      - flask_net
+    healthcheck:
+      test: pg_isready -U $${POSTGRES_USER} -h $${POSTGRES_HOST}
+      interval: 5s
 
-   
-  #db-postgres-compose:
-  #  image: postgres
-  #  environment:
-  #    POSTGRES_PASSWORD: "postgres"
-  #  ports:
-  #    - "15432:5432" 
-  #  volumes:
-      #- c:/docker/data/postgres:/var/lib/postgresql/data
-      # - c:\docker\data\postgres:/var/lib/postgresql/data 
-      # - /home/axel/Dev/Docker/postgres/data:/var/lib/postgresql/data
-      #- /home/renatogroffe/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data 
-  #  networks:
-  #    - postgres-compose-network
-      
-  #db-pgadmin-compose:
-  #  image: dpage/pgadmin4
-  #  environment:
-  #    PGADMIN_DEFAULT_EMAIL    : "axelpatton@gmail.com"
-  #    PGADMIN_DEFAULT_PASSWORD : "demo123"
-  #  ports:
-  #    - "16543:80"
-  #  depends_on:
-  #    - db-postgres-compose
-  #  networks:
-  #    - postgres-compose-network
+volumes:
+  flask_api_data:
+  flask_db_data:
 
 networks: 
-  postgres-compose-network:
+   flask_net:
     driver: bridge

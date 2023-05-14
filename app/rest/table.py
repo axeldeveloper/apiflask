@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+
 from app.models.models import Tipo, TipoSchema
 
 table = Blueprint('table', __name__)

@@ -9,32 +9,33 @@
 # CRUD
 
     CRUD (Create, Read, Update and Delete in English) for the four basic 
-    operations used in relational databases (RDBMS) or 
-    user interface for creating, querying, updating and destroying data.
+
 # Crete virtual env
     $ python3.9 -m venv env
     $ source env/bin/activate
     (env)$ pip install flask==1.1.2
+
 # PIP3
-    - sudo apt-get install python3-pip  `install`
-    - upgrade -> pip3 install --upgrade pip `upgrade`
+
+sudo apt-get install python3-pip  `install`
+
+upgrade -> pip3 install --upgrade pip `upgrade`
 
 
-# Python and pipenv 
-    - pip3 install pipenv
-    - pipenv shell  `execute to path project`
+# Python and pipenv
 
-example out 
-? Successfully created virtual environment! 
-- Virtualenv location: /root/.local/share/virtualenvs/apiflask-qjIn9wD9
-- . /root/.local/share/virtualenvs/apiflask-qjIn9wD9/bin/activate
--  . /Users/axel/.local/share/virtualenvs/apiflask-asEOaeOO/bin/activat
+pip3 install pipenv
+
+pipenv shell  `execute to path project`
+
 
 # pipenv set python 
-    - pipenv install --python 'c:\python'  <-- `Window`
-    - pipenv install --python 'usr/local/bin/python3.x' <-- `linux`
-    - pipenv install --python ~/usr/local/bin/python3.7
-    - /usr/local/bin/python3.7  pipenv shell 
+pipenv install --python 'c:\python'  <-- `Window`
+
+pipenv install --python 'usr/local/bin/python3.x' <-- `linux`
+
+pipenv install --python ~/usr/local/bin/python3.7
+/usr/local/bin/python3.7  pipenv shell 
 
 
 # Windows - WSL 
@@ -49,9 +50,9 @@ example out
 
 
 # Dependencies 
-    > $ pip install pipenv
-    > $ sudo apt install libpq-dev python3-dev
-    > $ pip3 install psycopg2-binary
+    $ pip install pipenv
+    $ sudo apt install libpq-dev python3-dev
+    $ pip3 install psycopg2-binary
 
 
 # Python initialize pipenv
@@ -63,16 +64,15 @@ example out
 - Virtualenv location: /root/.local/share/virtualenvs/apiflask-qjIn9wD9
 - . /root/.local/share/virtualenvs/apiflask-qjIn9wD9/bin/activate  `<-  env`
 
+
 # Install packages
-    * $ pipenv install or
-    * $ pipenv install -r requirements.txt
+    $ pipenv install or
+    $ pipenv install -r requirements.txt
 
 
 # Running the Development Server
 
-First, you need to specify where the Flask application is defined 
-(via the FLASK_APP environment variable). 
-Then, you can run your Flask application with `flask run`:
+Flask application with `flask run`:
 
     - (venv) $ export FLASK_ENV=development
     - (venv) $ export FLASK_DEBUG=1
@@ -88,11 +88,6 @@ Then, you can run your Flask application with `flask run`:
         * $ python -m flask run
         * $ flask run --host=0.0.0.0
 
-# Debug Mode
-    * $ export FLASK_ENV=development
-    * $ export FLASK_DEBUG=1.
-    * $ flask run
-
 # install packages Flask-Migrate
     * $ pip install Flask-Migrate or 
     * $ pipenv install Flask-Migrate
@@ -106,12 +101,11 @@ Then, you can run your Flask application with `flask run`:
     * $ flask db history
     * $ flask db --help
 
-
-
 # Flask  migrations
     * $ flask db init
     * $ flask db migrate
     * $ flask db upgrade
+    docker-compose run -rm api flask db migrate
 
 
 
@@ -240,23 +234,15 @@ Then, you can run your Flask application with `flask run`:
 - $ python manage.py db migrate
 - $ python manage.py db upgrade
 - $ python manage.py db --help
+- docker exec -i flask_api flask db ini
+- docker exec -i flask_api flask db migrate -m "Initial migration." 
+- docker exec -i flask_api flask db upgrade   
 
-
-# Docker
-- sudo usermod -aG docker $USER
-- export DOCKER_HOST="tcp://0.0.0.0:2375"
-- export DOCKER_HOST=127.0.0.1:4243 >> ~/.bashrc
-- export DOCKER_HOST=tcp://192.168.99.100:2376  // your Docker IP
-- export DOCKER_CERT_PATH=/mnt/c/Users/YOUR_USERNAME/.docker/machine/certs
-- export DOCKER_TLS_VERIFY=1
-- sudo /etc/init.d/docker start
-- sudo service docker start or systemctl start docker.
-- sudo service docker stop
 
 
 # doccker compose
 - docker-compose -f "docker/docker-compose.yml" up -d --build
-- /usr/bin/docker-compose -f "docker/docker-compose.yml" up -d --build
+
 
 
 ### project using
@@ -395,3 +381,53 @@ def estado_lista():
         RESULT = False
         return jsonify({ 'success': RESULT, 'rows': None, 'message': MESSAGE }) 
 ```
+
+
+# Development
+
+   - Axel Alexander
+
+# My web site
+
+- [My Homepage](https://axe-dev.herokuapp.com/)
+
+<p align="center">
+    <a href="https://github.com/axeldeveloper">
+        <img title="Author" 
+            src="https://img.shields.io/badge/AUTHOR-AXEL-orange.svg?style=for-the-badge&logo=github">
+    </a>
+</p>
+
+
+<p align="center">
+    <a href="https://www.linkedin.com/in/axeldeveloper/">
+        <img title="Linkedin" 
+        src="https://img.shields.io/badge/LINKDIN-AXEL-blue.svg?style=for-the-badge&logo=linkedin">
+    </a>
+</p>
+
+
+# Contributing
+
+- Axel
+- anomimous
+
+
+# Versioning
+
+# Authors
+
+ Axel Alexander  - [contact and contracts](http://axel-dev.herokuapp.com/)
+
+  | Front | HTML | CSS    | VueJS | React | React |
+  | ----- | ---- | ------ | ----- | ----- | ----- |
+  | Back  | C#   | Python | Ruby  | Go    | PHP   |
+
+
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+
+# License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

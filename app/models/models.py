@@ -6,7 +6,7 @@ from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
 from marshmallow import Schema
 
-from db import db
+from app.setting.db import db
 
 class Tipo(db.Model):
     __tablename__ = 'Tipos'

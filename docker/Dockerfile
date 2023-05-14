@@ -1,5 +1,6 @@
 # pull official base image
-FROM python:3.9.5-slim-buster
+#FROM python:3.9.5-slim-buster
+FROM python:3.10.7-slim-buster
 
 
 # set work directory
@@ -27,8 +28,8 @@ COPY . /usr/src/app/
 
 EXPOSE 5000
 
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
-# CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0"]
+#CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+
 
 #RUN ls -la app/
 #ENTRYPOINT ["app/docker-entrypoint.sh"]
